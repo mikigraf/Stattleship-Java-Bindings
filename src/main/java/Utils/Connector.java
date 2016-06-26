@@ -22,7 +22,7 @@ public class Connector {
     public String get(String params){
         URL url;
         try{
-            url = new URL(configuration.getApiEndpoint() + params);
+            url = new URL(params);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("Content-Type",configuration.getContentType());
