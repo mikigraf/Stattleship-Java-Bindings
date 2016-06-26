@@ -6,6 +6,22 @@ TODO:
 2. [ ] use json objects instead of strings
 3. [ ] implement missing, endpoint specific functions
 
+## How to use it?
+```javascript
+// create Stattleship object with your API KEY as parameter
+Stattleship stl = new Stattleship("<_YOUR_API_KEY_HERE>");
+// create object for the league, that you want to fetch data from: NBA,NFL,MLB,NHL
+NBA nba = new NBA();
+// build your parameters by calling get[XY] and appending parameters trough functions. 
+// getCurrentRequest() returns a string value of the url
+String url = nba.getBasketballFeats().season_id("nba-2015-2016").player_id("nba-lebron-james").getCurrentRequest();
+// connect returns a string containing the JSON response from the server
+System.out.println(stl.connect(url));
+```
+
+
+## Other examples
+
 ```javascript
 Stattleship stl = new Stattleship("<_YOUR_API_KEY_HERE>");
 MLB mlb = new MLB();
