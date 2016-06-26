@@ -1,48 +1,33 @@
-package Rankings;
+package StatLeaders;
 
-import Configuration.Configuration;
 import Feats.FeatsParameters.FeatsParameters;
 import GameLogs.SportLeague;
-import IntervalTypes.BaseballIntervalTypes;
-import Parameters.Parameters;
+import Penalties.Penalties;
 import Utils.Builder;
-import org.apache.http.client.utils.URIBuilder;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class Ranking implements Rankings<Ranking> {
+public class StatLeader implements StatLeaders<StatLeader> {
     private static String endpoint = "/";
     private Map<FeatsParameters, String> parameters;
     private String currentRequest;
 
-    public Ranking(SportLeague league){
-        endpoint =  "rankings";
+    public StatLeader(SportLeague league){
+        endpoint = league.toString() + "stat_leaders";
         currentRequest = endpoint;
         parameters = new HashMap<FeatsParameters, String>();
     }
 
-    public Ranking(Map<FeatsParameters,String> parameters){
+    public StatLeader(Map<FeatsParameters,String> parameters){
         currentRequest = endpoint;
         this.parameters = parameters;
     }
 
-    public void flush(){
-        parameters.clear();
-    }
-
-    public Ranking build(){
-        currentRequest = endpoint;
-        return this;
-    }
-
-    public Ranking perPage(int num){
+    public StatLeader perPage(int num){
         currentRequest = currentRequest + "&" + FeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
@@ -54,22 +39,13 @@ public class Ranking implements Rankings<Ranking> {
         return this;
     }
 
-    public Ranking pageOfResults(int pages){
+    public StatLeader pageOfResults(int pages){
         parameters.put(FeatsParameters.page,String.valueOf(pages));
         return this;
     }
 
-    public Ranking ranking(String ranking) {
-        return null;
-    }
-
-    public Ranking on(String date){
-        parameters.put(FeatsParameters.on,date);
-        return this;
-    }
-
-    public Ranking since(String date){
-        parameters.put(FeatsParameters.since,date);
+    public StatLeader season_id(String seasonId){
+        parameters.put(FeatsParameters.season_id,seasonId);
         return this;
     }
 

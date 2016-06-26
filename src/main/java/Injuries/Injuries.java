@@ -1,34 +1,30 @@
-package Rankings;
+package Injuries;
 
-import Configuration.Configuration;
 import Feats.FeatsParameters.FeatsParameters;
 import GameLogs.SportLeague;
+import Games.Games;
 import IntervalTypes.BaseballIntervalTypes;
 import Parameters.Parameters;
 import Utils.Builder;
-import org.apache.http.client.utils.URIBuilder;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class Ranking implements Rankings<Ranking> {
+public class Injuries implements Parameters<Injuries> {
     private static String endpoint = "/";
     private Map<FeatsParameters, String> parameters;
     private String currentRequest;
 
-    public Ranking(SportLeague league){
-        endpoint =  "rankings";
+    public Injuries(SportLeague league){
+        endpoint = league.toString() + "injuries";
         currentRequest = endpoint;
         parameters = new HashMap<FeatsParameters, String>();
     }
 
-    public Ranking(Map<FeatsParameters,String> parameters){
+    public Injuries(Map<FeatsParameters,String> parameters){
         currentRequest = endpoint;
         this.parameters = parameters;
     }
@@ -37,12 +33,12 @@ public class Ranking implements Rankings<Ranking> {
         parameters.clear();
     }
 
-    public Ranking build(){
+    public Injuries build(){
         currentRequest = endpoint;
         return this;
     }
 
-    public Ranking perPage(int num){
+    public Injuries perPage(int num){
         currentRequest = currentRequest + "&" + FeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
@@ -54,22 +50,53 @@ public class Ranking implements Rankings<Ranking> {
         return this;
     }
 
-    public Ranking pageOfResults(int pages){
+    public Injuries pageOfResults(int pages){
         parameters.put(FeatsParameters.page,String.valueOf(pages));
         return this;
     }
 
-    public Ranking ranking(String ranking) {
-        return null;
+    public Injuries game_id(String gameId){
+        parameters.put(FeatsParameters.game_id,gameId);
+        return this;
     }
 
-    public Ranking on(String date){
+    public Injuries player_id(String playerId){
+        parameters.put(FeatsParameters.player_id,playerId);
+        return this;
+    }
+
+    public Injuries team_id(String team_id){
+        parameters.put(FeatsParameters.team_id,team_id);
+        return this;
+    }
+
+    public Injuries interval_tyoe(BaseballIntervalTypes intervalType){
+        parameters.put(FeatsParameters.interval_type,intervalType.name());
+        return this;
+    }
+
+    public Injuries season_id(String seasonId){
+        parameters.put(FeatsParameters.season_id,seasonId);
+        return this;
+    }
+
+    public Injuries on(String date){
         parameters.put(FeatsParameters.on,date);
         return this;
     }
 
-    public Ranking since(String date){
+    public Injuries since(String date){
         parameters.put(FeatsParameters.since,date);
+        return this;
+    }
+
+    public Injuries level(int level){
+        parameters.put(FeatsParameters.level,String.valueOf(level));
+        return this;
+    }
+
+    public Injuries name(String name){
+        parameters.put(FeatsParameters.name,name);
         return this;
     }
 
@@ -77,4 +104,5 @@ public class Ranking implements Rankings<Ranking> {
         Builder builder = new Builder(endpoint);
         return builder.getUrlAsString(parameters);
     }
+
 }

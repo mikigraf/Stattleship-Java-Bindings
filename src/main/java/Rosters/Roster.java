@@ -1,34 +1,27 @@
-package Rankings;
+package Rosters;
 
-import Configuration.Configuration;
 import Feats.FeatsParameters.FeatsParameters;
 import GameLogs.SportLeague;
-import IntervalTypes.BaseballIntervalTypes;
-import Parameters.Parameters;
 import Utils.Builder;
-import org.apache.http.client.utils.URIBuilder;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class Ranking implements Rankings<Ranking> {
+public class Roster implements Rosters<Roster>{
     private static String endpoint = "/";
     private Map<FeatsParameters, String> parameters;
     private String currentRequest;
 
-    public Ranking(SportLeague league){
-        endpoint =  "rankings";
+    public Roster(SportLeague league){
+        endpoint = league.toString() + "roster";
         currentRequest = endpoint;
         parameters = new HashMap<FeatsParameters, String>();
     }
 
-    public Ranking(Map<FeatsParameters,String> parameters){
+    public Roster(Map<FeatsParameters,String> parameters){
         currentRequest = endpoint;
         this.parameters = parameters;
     }
@@ -37,12 +30,12 @@ public class Ranking implements Rankings<Ranking> {
         parameters.clear();
     }
 
-    public Ranking build(){
+    public Roster build(){
         currentRequest = endpoint;
         return this;
     }
 
-    public Ranking perPage(int num){
+    public Roster perPage(int num){
         currentRequest = currentRequest + "&" + FeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
@@ -54,25 +47,26 @@ public class Ranking implements Rankings<Ranking> {
         return this;
     }
 
-    public Ranking pageOfResults(int pages){
+    public Roster pageOfResults(int pages){
         parameters.put(FeatsParameters.page,String.valueOf(pages));
         return this;
     }
 
-    public Ranking ranking(String ranking) {
-        return null;
-    }
-
-    public Ranking on(String date){
-        parameters.put(FeatsParameters.on,date);
+    public Roster game_id(String gameId){
+        parameters.put(FeatsParameters.game_id,gameId);
         return this;
     }
 
-    public Ranking since(String date){
-        parameters.put(FeatsParameters.since,date);
+    public Roster player_id(String playerId){
+        parameters.put(FeatsParameters.player_id,playerId);
         return this;
     }
 
+    public Roster team_id(String team_id){
+        parameters.put(FeatsParameters.team_id,team_id);
+        return this;
+    }
+    
     public String getCurrentRequest() {
         Builder builder = new Builder(endpoint);
         return builder.getUrlAsString(parameters);

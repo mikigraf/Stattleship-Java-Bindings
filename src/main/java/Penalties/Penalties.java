@@ -1,6 +1,8 @@
-package GameLogs;
+package Penalties;
 
 import Feats.FeatsParameters.FeatsParameters;
+import GameLogs.SportLeague;
+import Penalties.Penalties;
 import IntervalTypes.BaseballIntervalTypes;
 import Parameters.Parameters;
 import Utils.Builder;
@@ -11,18 +13,18 @@ import java.util.Map;
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class GameLogs implements Parameters<GameLogs> {
+public class Penalties implements Parameters<Penalties> {
     private static String endpoint = "/";
     private Map<FeatsParameters, String> parameters;
     private String currentRequest;
 
-    public GameLogs(SportLeague league){
-        endpoint = league.toString() + "game_logs";
+    public Penalties(SportLeague league){
+        endpoint = league.toString() + "penalties";
         currentRequest = endpoint;
         parameters = new HashMap<FeatsParameters, String>();
     }
 
-    public GameLogs(Map<FeatsParameters,String> parameters){
+    public Penalties(Map<FeatsParameters,String> parameters){
         currentRequest = endpoint;
         this.parameters = parameters;
     }
@@ -31,12 +33,12 @@ public class GameLogs implements Parameters<GameLogs> {
         parameters.clear();
     }
 
-    public GameLogs build(){
+    public Penalties build(){
         currentRequest = endpoint;
         return this;
     }
 
-    public GameLogs perPage(int num){
+    public Penalties perPage(int num){
         currentRequest = currentRequest + "&" + FeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
@@ -48,52 +50,52 @@ public class GameLogs implements Parameters<GameLogs> {
         return this;
     }
 
-    public GameLogs pageOfResults(int pages){
+    public Penalties pageOfResults(int pages){
         parameters.put(FeatsParameters.page,String.valueOf(pages));
         return this;
     }
 
-    public GameLogs game_id(String gameId){
+    public Penalties game_id(String gameId){
         parameters.put(FeatsParameters.game_id,gameId);
         return this;
     }
 
-    public GameLogs player_id(String playerId){
+    public Penalties player_id(String playerId){
         parameters.put(FeatsParameters.player_id,playerId);
         return this;
     }
 
-    public GameLogs team_id(String team_id){
+    public Penalties team_id(String team_id){
         parameters.put(FeatsParameters.team_id,team_id);
         return this;
     }
 
-    public GameLogs interval_tyoe(BaseballIntervalTypes intervalType){
+    public Penalties interval_tyoe(BaseballIntervalTypes intervalType){
         parameters.put(FeatsParameters.interval_type,intervalType.name());
         return this;
     }
 
-    public GameLogs season_id(String seasonId){
+    public Penalties season_id(String seasonId){
         parameters.put(FeatsParameters.season_id,seasonId);
         return this;
     }
 
-    public GameLogs on(String date){
+    public Penalties on(String date){
         parameters.put(FeatsParameters.on,date);
         return this;
     }
 
-    public GameLogs since(String date){
+    public Penalties since(String date){
         parameters.put(FeatsParameters.since,date);
         return this;
     }
 
-    public GameLogs level(int level){
+    public Penalties level(int level){
         parameters.put(FeatsParameters.level,String.valueOf(level));
         return this;
     }
 
-    public GameLogs name(String name){
+    public Penalties name(String name){
         parameters.put(FeatsParameters.name,name);
         return this;
     }
