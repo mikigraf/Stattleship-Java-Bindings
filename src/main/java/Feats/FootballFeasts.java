@@ -97,6 +97,11 @@ public class FootballFeasts implements Feats<FootballFeasts> {
         return this;
     }
 
+    public FootballFeasts week(int week){
+        parameters.put(FootballFeatsParameters.week,String.valueOf(week));
+        return this;
+    }
+
     public String getCurrentRequest() {
         URIBuilder builder = null;
         try {

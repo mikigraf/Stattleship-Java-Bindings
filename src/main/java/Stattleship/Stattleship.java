@@ -21,7 +21,7 @@ public class Stattleship {
 
     public String testConnection(){
         connector = new Connector();
-        return connector.get("baseball/mlb/feats");
+        return connector.get("https://www.stattleship.com/?team_id=mlb-kc");
     }
 
     public String connect(String url){
