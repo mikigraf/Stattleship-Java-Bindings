@@ -18,4 +18,8 @@ public enum BasketballRankings {
         value = s;
     }
 
+    public String toString() {
+        return this.value;
+    }
+
 }

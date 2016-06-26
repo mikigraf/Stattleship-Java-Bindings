@@ -22,4 +22,8 @@ public enum FootballFeatsParameters {
     private FootballFeatsParameters(String s) {
         value = s;
     }
+
+    public String toString() {
+        return this.value;
+    }
 }

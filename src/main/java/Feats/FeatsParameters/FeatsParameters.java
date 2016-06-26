@@ -21,4 +21,8 @@ public enum FeatsParameters {
     private FeatsParameters(String s) {
         value = s;
     }
+
+    public String toString() {
+        return this.value;
+    }
 }

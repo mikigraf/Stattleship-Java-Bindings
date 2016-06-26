@@ -4,6 +4,7 @@ import Configuration.Configuration;
 import Feats.FeatsParameters.FeatsParameters;
 import IntervalTypes.HockeyIntervalTypes;
 import Parameters.Parameters;
+import Utils.Builder;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.net.MalformedURLException;
@@ -97,23 +98,7 @@ public class HockeyFeats implements Parameters<HockeyFeats> {
     }
 
     public String getCurrentRequest() {
-        URIBuilder builder = null;
-        try {
-            builder = new URIBuilder(new Configuration().getApiEndpoint() + endpoint);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        for(Map.Entry<FeatsParameters,String> entry : parameters.entrySet()){
-            builder.addParameter(entry.getKey().name(),entry.getValue());
-        }
-        try {
-            URL url = builder.build().toURL();
-            return url.toString();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return null;
+        Builder builder = new Builder(endpoint);
+        return builder.getUrlAsString(parameters);
     }
 }

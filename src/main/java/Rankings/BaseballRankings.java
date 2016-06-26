@@ -14,4 +14,8 @@ public enum BaseballRankings{
     private BaseballRankings(String s) {
         value = s;
     }
+
+    public String toString() {
+        return this.value;
+    }
 }

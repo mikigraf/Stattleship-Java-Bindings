@@ -19,4 +19,8 @@ public enum FootballIntervalTypes {
     private FootballIntervalTypes(String s) {
         value = s;
     }
+
+    public String toString() {
+        return this.value;
+    }
 }

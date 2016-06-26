@@ -19,4 +19,8 @@ public enum BasketballIntervalTypes {
     private BasketballIntervalTypes(String s) {
         value = s;
     }
+
+    public String toString() {
+        return this.value;
+    }
 }

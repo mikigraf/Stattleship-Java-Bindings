@@ -1,7 +1,9 @@
 package Leagues;
 
 import Feats.BaseballFeats;
+import GameLogs.GameLogs;
 import Utils.Connector;
+import GameLogs.SportLeague;
 
 /**
  * Created by Mikolaj Wawrzyniak
@@ -9,6 +11,7 @@ import Utils.Connector;
 public class MLB extends League {
     private final static String mlbEndpoint = "baseball/mlb/";
     private BaseballFeats feats;
+    private GameLogs gamelogs;
 
 
     public MLB(String endpoint) {
@@ -30,5 +33,9 @@ public class MLB extends League {
 
     public BaseballFeats getBaseballFeats(){
         return feats = new BaseballFeats();
+    }
+
+    public GameLogs getGameLogs(){
+        return gamelogs = new GameLogs(SportLeague.MLB);
     }
 }
