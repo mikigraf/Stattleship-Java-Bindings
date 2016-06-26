@@ -1,5 +1,9 @@
 # Stattleship-Java-Bindings
 Work in progress... 
+TODO:
+[ ] implement parsers for the json objects
+[ ] use json objects instead of strings
+[ ] implement missing, endpoint specific functions
 
 ```javascript
 Stattleship stl = new Stattleship("<_YOUR_API_KEY_HERE>");
