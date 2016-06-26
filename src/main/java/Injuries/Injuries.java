@@ -2,7 +2,6 @@ package Injuries;
 
 import Feats.FeatsParameters.FeatsParameters;
 import GameLogs.SportLeague;
-import Games.Games;
 import IntervalTypes.BaseballIntervalTypes;
 import Parameters.Parameters;
 import Utils.Builder;

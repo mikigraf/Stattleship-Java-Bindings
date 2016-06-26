@@ -1,8 +1,6 @@
 package Utils;
 
 import Configuration.Configuration;
-import Stattleship.YOUR_ACCESS_TOKEN;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,7 +24,7 @@ public class Connector {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("Content-Type",configuration.getContentType());
-            con.setRequestProperty("Authorization",new YOUR_ACCESS_TOKEN().key);
+            con.setRequestProperty("Authorization",configuration.getApiKey());
             con.setRequestProperty("Accept",configuration.getACCEPT());
 
             if(con.getResponseCode() != 200){

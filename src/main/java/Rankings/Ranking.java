@@ -1,16 +1,8 @@
 package Rankings;
 
-import Configuration.Configuration;
 import Feats.FeatsParameters.FeatsParameters;
 import GameLogs.SportLeague;
-import IntervalTypes.BaseballIntervalTypes;
-import Parameters.Parameters;
 import Utils.Builder;
-import org.apache.http.client.utils.URIBuilder;
-
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -2,7 +2,6 @@ package Penalties;
 
 import Feats.FeatsParameters.FeatsParameters;
 import GameLogs.SportLeague;
-import Penalties.Penalties;
 import IntervalTypes.BaseballIntervalTypes;
 import Parameters.Parameters;
 import Utils.Builder;

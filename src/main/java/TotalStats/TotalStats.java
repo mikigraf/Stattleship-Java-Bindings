@@ -3,9 +3,7 @@ package TotalStats;
 import Feats.FeatsParameters.FeatsParameters;
 import GameLogs.SportLeague;
 import IntervalTypes.BaseballIntervalTypes;
-import TotalStats.TotalStats;
 import Utils.Builder;
-
 import java.util.HashMap;
 import java.util.Map;
 

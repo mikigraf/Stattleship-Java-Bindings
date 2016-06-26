@@ -1,11 +1,10 @@
 package Stats;
+
 import Feats.FeatsParameters.FeatsParameters;
 import GameLogs.SportLeague;
 import IntervalTypes.BaseballIntervalTypes;
 import Parameters.Parameters;
-import Stats.Stats;
 import Utils.Builder;
-
 import java.util.HashMap;
 import java.util.Map;
 
