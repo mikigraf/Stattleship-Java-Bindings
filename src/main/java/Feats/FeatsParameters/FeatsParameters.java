@@ -3,7 +3,7 @@ package Feats.FeatsParameters;
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public enum HockeyParameters {
+public enum FeatsParameters {
     per_page("per_page"),
     page("page"),
     game_id("game_id"),
@@ -18,7 +18,7 @@ public enum HockeyParameters {
 
     private final String value;
 
-    private HockeyParameters(String s) {
+    private FeatsParameters(String s) {
         value = s;
     }
 }

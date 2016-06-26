@@ -1,10 +1,7 @@
 package Leagues;
 
 import Feats.BaseballFeats;
-import Feats.FeatsParameters.BaseballFeatsParameters;
 import Utils.Connector;
-
-import java.util.Map;
 
 /**
  * Created by Mikolaj Wawrzyniak
@@ -12,6 +9,7 @@ import java.util.Map;
 public class MLB extends League {
     private final static String mlbEndpoint = "baseball/mlb/";
     private BaseballFeats feats;
+
 
     public MLB(String endpoint) {
         super(endpoint);

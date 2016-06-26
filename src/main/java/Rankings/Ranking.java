@@ -1,13 +1,11 @@
 package Rankings;
 
 import Configuration.Configuration;
-import Feats.FeatsParameters.BaseballFeatsParameters;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Map;
 
 /**
  * Created by Mikolaj Wawrzyniak

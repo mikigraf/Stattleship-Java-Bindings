@@ -1,10 +1,9 @@
 package Feats;
 
 import Configuration.Configuration;
-import Feats.FeatsParameters.BaseballFeatsParameters;
-import Feats.FeatsParameters.BasketballFeatsParameters;
-import IntervalTypes.BaseballIntervalTypes;
+import Feats.FeatsParameters.FeatsParameters;
 import IntervalTypes.BasketballIntervalTypes;
+import Parameters.Parameters;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.net.MalformedURLException;
@@ -16,14 +15,14 @@ import java.util.Map;
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class BasketballFeats implements Feats<BasketballFeats>{
+public class BasketballFeats implements Parameters<BasketballFeats> {
     private final static String endpoint = "basketball/nba/feats";
-    private Map<BasketballFeatsParameters, String> parameters;
+    private Map<FeatsParameters, String> parameters;
     private String currentRequest;
 
     public BasketballFeats(){
         currentRequest = endpoint;
-        parameters = new HashMap<BasketballFeatsParameters, String>();
+        parameters = new HashMap<FeatsParameters, String>();
     }
 
     public void flush(){
@@ -36,7 +35,7 @@ public class BasketballFeats implements Feats<BasketballFeats>{
     }
 
     public BasketballFeats perPage(int num){
-        currentRequest = currentRequest + "&" + BasketballFeatsParameters.per_page.name() + "=";
+        currentRequest = currentRequest + "&" + FeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
         }else if(num < 0){
@@ -48,52 +47,52 @@ public class BasketballFeats implements Feats<BasketballFeats>{
     }
 
     public BasketballFeats pageOfResults(int pages){
-        parameters.put(BasketballFeatsParameters.page,String.valueOf(pages));
+        parameters.put(FeatsParameters.page,String.valueOf(pages));
         return this;
     }
 
     public BasketballFeats game_id(String gameId){
-        parameters.put(BasketballFeatsParameters.game_id,gameId);
+        parameters.put(FeatsParameters.game_id,gameId);
         return this;
     }
 
     public BasketballFeats player_id(String playerId){
-        parameters.put(BasketballFeatsParameters.player_id,playerId);
+        parameters.put(FeatsParameters.player_id,playerId);
         return this;
     }
 
     public BasketballFeats team_id(String team_id){
-        parameters.put(BasketballFeatsParameters.team_id,team_id);
+        parameters.put(FeatsParameters.team_id,team_id);
         return this;
     }
 
     public BasketballFeats interval_tyoe(BasketballIntervalTypes intervalType){
-        parameters.put(BasketballFeatsParameters.interval_type,intervalType.name());
+        parameters.put(FeatsParameters.interval_type,intervalType.name());
         return this;
     }
 
     public BasketballFeats season_id(String seasonId){
-        parameters.put(BasketballFeatsParameters.season_id,seasonId);
+        parameters.put(FeatsParameters.season_id,seasonId);
         return this;
     }
 
     public BasketballFeats on(String date){
-        parameters.put(BasketballFeatsParameters.on,date);
+        parameters.put(FeatsParameters.on,date);
         return this;
     }
 
     public BasketballFeats since(String date){
-        parameters.put(BasketballFeatsParameters.since,date);
+        parameters.put(FeatsParameters.since,date);
         return this;
     }
 
     public BasketballFeats level(int level){
-        parameters.put(BasketballFeatsParameters.level,String.valueOf(level));
+        parameters.put(FeatsParameters.level,String.valueOf(level));
         return this;
     }
 
     public BasketballFeats name(String name){
-        parameters.put(BasketballFeatsParameters.name,name);
+        parameters.put(FeatsParameters.name,name);
         return this;
     }
 
@@ -104,7 +103,7 @@ public class BasketballFeats implements Feats<BasketballFeats>{
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        for(Map.Entry<BasketballFeatsParameters,String> entry : parameters.entrySet()){
+        for(Map.Entry<FeatsParameters,String> entry : parameters.entrySet()){
             builder.addParameter(entry.getKey().name(),entry.getValue());
         }
         try {

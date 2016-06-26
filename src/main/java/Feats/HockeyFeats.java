@@ -1,11 +1,9 @@
 package Feats;
 
 import Configuration.Configuration;
-import Feats.FeatsParameters.BaseballFeatsParameters;
-import Feats.FeatsParameters.FootballFeatsParameters;
-import Feats.FeatsParameters.HockeyParameters;
-import IntervalTypes.FootballIntervalTypes;
+import Feats.FeatsParameters.FeatsParameters;
 import IntervalTypes.HockeyIntervalTypes;
+import Parameters.Parameters;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.net.MalformedURLException;
@@ -17,14 +15,14 @@ import java.util.Map;
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class HockeyFeats implements Feats<HockeyFeats> {
+public class HockeyFeats implements Parameters<HockeyFeats> {
     private final static String endpoint = "hockey/nhl/feats";
-    private Map<HockeyParameters, String> parameters;
+    private Map<FeatsParameters, String> parameters;
     private String currentRequest;
 
     public HockeyFeats(){
         currentRequest = endpoint;
-        parameters = new HashMap<HockeyParameters, String>();
+        parameters = new HashMap<FeatsParameters, String>();
     }
 
     public void flush(){
@@ -37,7 +35,7 @@ public class HockeyFeats implements Feats<HockeyFeats> {
     }
 
     public HockeyFeats perPage(int num){
-        currentRequest = currentRequest + "&" + HockeyParameters.per_page.name() + "=";
+        currentRequest = currentRequest + "&" + FeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
         }else if(num < 0){
@@ -49,52 +47,52 @@ public class HockeyFeats implements Feats<HockeyFeats> {
     }
 
     public HockeyFeats pageOfResults(int pages){
-        parameters.put(HockeyParameters.page,String.valueOf(pages));
+        parameters.put(FeatsParameters.page,String.valueOf(pages));
         return this;
     }
 
     public HockeyFeats game_id(String gameId){
-        parameters.put(HockeyParameters.game_id,gameId);
+        parameters.put(FeatsParameters.game_id,gameId);
         return this;
     }
 
     public HockeyFeats player_id(String playerId){
-        parameters.put(HockeyParameters.player_id,playerId);
+        parameters.put(FeatsParameters.player_id,playerId);
         return this;
     }
 
     public HockeyFeats team_id(String team_id){
-        parameters.put(HockeyParameters.team_id,team_id);
+        parameters.put(FeatsParameters.team_id,team_id);
         return this;
     }
 
     public HockeyFeats interval_tyoe(HockeyIntervalTypes intervalType){
-        parameters.put(HockeyParameters.interval_type,intervalType.name());
+        parameters.put(FeatsParameters.interval_type,intervalType.name());
         return this;
     }
 
     public HockeyFeats season_id(String seasonId){
-        parameters.put(HockeyParameters.season_id,seasonId);
+        parameters.put(FeatsParameters.season_id,seasonId);
         return this;
     }
 
     public HockeyFeats on(String date){
-        parameters.put(HockeyParameters.on,date);
+        parameters.put(FeatsParameters.on,date);
         return this;
     }
 
     public HockeyFeats since(String date){
-        parameters.put(HockeyParameters.since,date);
+        parameters.put(FeatsParameters.since,date);
         return this;
     }
 
     public HockeyFeats level(int level){
-        parameters.put(HockeyParameters.level,String.valueOf(level));
+        parameters.put(FeatsParameters.level,String.valueOf(level));
         return this;
     }
 
     public HockeyFeats name(String name){
-        parameters.put(HockeyParameters.name,name);
+        parameters.put(FeatsParameters.name,name);
         return this;
     }
 
@@ -105,7 +103,7 @@ public class HockeyFeats implements Feats<HockeyFeats> {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        for(Map.Entry<HockeyParameters,String> entry : parameters.entrySet()){
+        for(Map.Entry<FeatsParameters,String> entry : parameters.entrySet()){
             builder.addParameter(entry.getKey().name(),entry.getValue());
         }
         try {

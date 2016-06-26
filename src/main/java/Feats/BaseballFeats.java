@@ -1,8 +1,9 @@
 package Feats;
 
 import Configuration.Configuration;
-import Feats.FeatsParameters.BaseballFeatsParameters;
+import Feats.FeatsParameters.FeatsParameters;
 import IntervalTypes.BaseballIntervalTypes;
+import Parameters.Parameters;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.net.MalformedURLException;
@@ -16,17 +17,17 @@ import java.util.Map;
  * using the official documentation
  * Remember — happy Feats specify valid subjects, like a player_id, team_id, or game_id!
  */
-public class BaseballFeats implements Feats<BaseballFeats>{
+public class BaseballFeats implements Parameters<BaseballFeats> {
     private final static String endpoint = "baseball/mlb/feats";
-    private Map<BaseballFeatsParameters, String> parameters;
+    private Map<FeatsParameters, String> parameters;
     private String currentRequest;
 
     public BaseballFeats(){
         currentRequest = endpoint;
-        parameters = new HashMap<BaseballFeatsParameters, String>();
+        parameters = new HashMap<FeatsParameters, String>();
     }
 
-    public BaseballFeats(Map<BaseballFeatsParameters,String> parameters){
+    public BaseballFeats(Map<FeatsParameters,String> parameters){
         currentRequest = endpoint;
         this.parameters = parameters;
     }
@@ -41,7 +42,7 @@ public class BaseballFeats implements Feats<BaseballFeats>{
     }
 
     public BaseballFeats perPage(int num){
-        currentRequest = currentRequest + "&" + BaseballFeatsParameters.per_page.name() + "=";
+        currentRequest = currentRequest + "&" + FeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
         }else if(num < 0){
@@ -53,52 +54,52 @@ public class BaseballFeats implements Feats<BaseballFeats>{
     }
 
     public BaseballFeats pageOfResults(int pages){
-        parameters.put(BaseballFeatsParameters.page,String.valueOf(pages));
+        parameters.put(FeatsParameters.page,String.valueOf(pages));
         return this;
     }
 
     public BaseballFeats game_id(String gameId){
-        parameters.put(BaseballFeatsParameters.game_id,gameId);
+        parameters.put(FeatsParameters.game_id,gameId);
         return this;
     }
 
     public BaseballFeats player_id(String playerId){
-        parameters.put(BaseballFeatsParameters.player_id,playerId);
+        parameters.put(FeatsParameters.player_id,playerId);
         return this;
     }
 
     public BaseballFeats team_id(String team_id){
-        parameters.put(BaseballFeatsParameters.team_id,team_id);
+        parameters.put(FeatsParameters.team_id,team_id);
         return this;
     }
 
     public BaseballFeats interval_tyoe(BaseballIntervalTypes intervalType){
-        parameters.put(BaseballFeatsParameters.interval_type,intervalType.name());
+        parameters.put(FeatsParameters.interval_type,intervalType.name());
         return this;
     }
 
     public BaseballFeats season_id(String seasonId){
-        parameters.put(BaseballFeatsParameters.season_id,seasonId);
+        parameters.put(FeatsParameters.season_id,seasonId);
         return this;
     }
 
     public BaseballFeats on(String date){
-        parameters.put(BaseballFeatsParameters.on,date);
+        parameters.put(FeatsParameters.on,date);
         return this;
     }
 
     public BaseballFeats since(String date){
-        parameters.put(BaseballFeatsParameters.since,date);
+        parameters.put(FeatsParameters.since,date);
         return this;
     }
 
     public BaseballFeats level(int level){
-        parameters.put(BaseballFeatsParameters.level,String.valueOf(level));
+        parameters.put(FeatsParameters.level,String.valueOf(level));
         return this;
     }
 
     public BaseballFeats name(String name){
-        parameters.put(BaseballFeatsParameters.name,name);
+        parameters.put(FeatsParameters.name,name);
         return this;
     }
 
@@ -109,7 +110,7 @@ public class BaseballFeats implements Feats<BaseballFeats>{
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        for(Map.Entry<BaseballFeatsParameters,String> entry : parameters.entrySet()){
+        for(Map.Entry<FeatsParameters,String> entry : parameters.entrySet()){
             builder.addParameter(entry.getKey().name(),entry.getValue());
         }
         try {
