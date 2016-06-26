@@ -1,11 +1,9 @@
 package Feats;
 
 import Configuration.Configuration;
-import Feats.FeatsParameters.BaseballFeatsParameters;
 import Feats.FeatsParameters.FootballFeatsParameters;
-import IntervalTypes.BaseballIntervalTypes;
 import IntervalTypes.FootballIntervalTypes;
-import Leagues.League;
+import Parameters.Parameters;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.net.MalformedURLException;
@@ -17,7 +15,7 @@ import java.util.Map;
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class FootballFeasts implements Feats<FootballFeasts> {
+public class FootballFeasts implements Parameters<FootballFeasts> {
     private final static String endpoint = "football/nfl/feats";
     private Map<FootballFeatsParameters, String> parameters;
     private String currentRequest;
@@ -37,7 +35,7 @@ public class FootballFeasts implements Feats<FootballFeasts> {
     }
 
     public FootballFeasts perPage(int num){
-        currentRequest = currentRequest + "&" + BaseballFeatsParameters.per_page.name() + "=";
+        currentRequest = currentRequest + "&" + FootballFeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
         }else if(num < 0){

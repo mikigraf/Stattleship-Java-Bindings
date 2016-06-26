@@ -1,12 +1,9 @@
-package Feats;
-
-import Feats.FeatsParameters.BasketballFeatsParameters;
-import IntervalTypes.BasketballIntervalTypes;
+package Parameters;
 
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public interface Feats<T> {
+public interface Parameters<T> {
     /**
      * Sanitizes the request url.
      * It has to be called before a new different request should be called.
