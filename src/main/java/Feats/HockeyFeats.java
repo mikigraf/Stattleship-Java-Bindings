@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class HockeyFeats implements Feats {
+public class HockeyFeats implements Feats<HockeyFeats> {
     private final static String endpoint = "hockey/nhl/feats";
     private Map<HockeyParameters, String> parameters;
     private String currentRequest;
@@ -31,11 +31,12 @@ public class HockeyFeats implements Feats {
         parameters.clear();
     }
 
-    public String build(){
-        return currentRequest = endpoint;
+    public HockeyFeats build(){
+        currentRequest = endpoint;
+        return this;
     }
 
-    public String perPage(int num){
+    public HockeyFeats perPage(int num){
         currentRequest = currentRequest + "&" + HockeyParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
@@ -44,47 +45,57 @@ public class HockeyFeats implements Feats {
         }else{
             currentRequest += num;
         }
-        return currentRequest;
+        return this;
     }
 
-    public void pageOfResults(int pages){
+    public HockeyFeats pageOfResults(int pages){
         parameters.put(HockeyParameters.page,String.valueOf(pages));
+        return this;
     }
 
-    public void game_id(String gameId){
+    public HockeyFeats game_id(String gameId){
         parameters.put(HockeyParameters.game_id,gameId);
+        return this;
     }
 
-    public void player_id(String playerId){
+    public HockeyFeats player_id(String playerId){
         parameters.put(HockeyParameters.player_id,playerId);
+        return this;
     }
 
-    public void team_id(String team_id){
+    public HockeyFeats team_id(String team_id){
         parameters.put(HockeyParameters.team_id,team_id);
+        return this;
     }
 
-    public void interval_tyoe(HockeyIntervalTypes intervalType){
+    public HockeyFeats interval_tyoe(HockeyIntervalTypes intervalType){
         parameters.put(HockeyParameters.interval_type,intervalType.name());
+        return this;
     }
 
-    public void season_id(String seasonId){
+    public HockeyFeats season_id(String seasonId){
         parameters.put(HockeyParameters.season_id,seasonId);
+        return this;
     }
 
-    public void on(String date){
+    public HockeyFeats on(String date){
         parameters.put(HockeyParameters.on,date);
+        return this;
     }
 
-    public void since(String date){
+    public HockeyFeats since(String date){
         parameters.put(HockeyParameters.since,date);
+        return this;
     }
 
-    public void level(int level){
+    public HockeyFeats level(int level){
         parameters.put(HockeyParameters.level,String.valueOf(level));
+        return this;
     }
 
-    public void name(String name){
+    public HockeyFeats name(String name){
         parameters.put(HockeyParameters.name,name);
+        return this;
     }
 
     public String getCurrentRequest() {

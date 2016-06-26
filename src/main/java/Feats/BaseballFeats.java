@@ -16,7 +16,7 @@ import java.util.Map;
  * using the official documentation
  * Remember — happy Feats specify valid subjects, like a player_id, team_id, or game_id!
  */
-public class BaseballFeats implements Feats{
+public class BaseballFeats implements Feats<BaseballFeats>{
     private final static String endpoint = "baseball/mlb/feats";
     private Map<BaseballFeatsParameters, String> parameters;
     private String currentRequest;
@@ -26,15 +26,21 @@ public class BaseballFeats implements Feats{
         parameters = new HashMap<BaseballFeatsParameters, String>();
     }
 
+    public BaseballFeats(Map<BaseballFeatsParameters,String> parameters){
+        currentRequest = endpoint;
+        this.parameters = parameters;
+    }
+
     public void flush(){
         parameters.clear();
     }
 
-    public String build(){
-        return currentRequest = endpoint;
+    public BaseballFeats build(){
+        currentRequest = endpoint;
+        return this;
     }
 
-    public String perPage(int num){
+    public BaseballFeats perPage(int num){
         currentRequest = currentRequest + "&" + BaseballFeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
@@ -43,47 +49,57 @@ public class BaseballFeats implements Feats{
         }else{
             currentRequest += num;
         }
-        return currentRequest;
+        return this;
     }
 
-    public void pageOfResults(int pages){
+    public BaseballFeats pageOfResults(int pages){
         parameters.put(BaseballFeatsParameters.page,String.valueOf(pages));
+        return this;
     }
 
-    public void game_id(String gameId){
+    public BaseballFeats game_id(String gameId){
         parameters.put(BaseballFeatsParameters.game_id,gameId);
+        return this;
     }
 
-    public void player_id(String playerId){
+    public BaseballFeats player_id(String playerId){
         parameters.put(BaseballFeatsParameters.player_id,playerId);
+        return this;
     }
 
-    public void team_id(String team_id){
+    public BaseballFeats team_id(String team_id){
         parameters.put(BaseballFeatsParameters.team_id,team_id);
+        return this;
     }
 
-    public void interval_tyoe(BaseballIntervalTypes intervalType){
+    public BaseballFeats interval_tyoe(BaseballIntervalTypes intervalType){
         parameters.put(BaseballFeatsParameters.interval_type,intervalType.name());
+        return this;
     }
 
-    public void season_id(String seasonId){
+    public BaseballFeats season_id(String seasonId){
         parameters.put(BaseballFeatsParameters.season_id,seasonId);
+        return this;
     }
 
-    public void on(String date){
+    public BaseballFeats on(String date){
         parameters.put(BaseballFeatsParameters.on,date);
+        return this;
     }
 
-    public void since(String date){
+    public BaseballFeats since(String date){
         parameters.put(BaseballFeatsParameters.since,date);
+        return this;
     }
 
-    public void level(int level){
+    public BaseballFeats level(int level){
         parameters.put(BaseballFeatsParameters.level,String.valueOf(level));
+        return this;
     }
 
-    public void name(String name){
+    public BaseballFeats name(String name){
         parameters.put(BaseballFeatsParameters.name,name);
+        return this;
     }
 
     public String getCurrentRequest() {

@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class BasketballFeats implements Feats{
+public class BasketballFeats implements Feats<BasketballFeats>{
     private final static String endpoint = "basketball/nba/feats";
     private Map<BasketballFeatsParameters, String> parameters;
     private String currentRequest;
@@ -30,11 +30,12 @@ public class BasketballFeats implements Feats{
         parameters.clear();
     }
 
-    public String build(){
-        return currentRequest = endpoint;
+    public BasketballFeats build(){
+        currentRequest = endpoint;
+        return this;
     }
 
-    public String perPage(int num){
+    public BasketballFeats perPage(int num){
         currentRequest = currentRequest + "&" + BasketballFeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
@@ -43,47 +44,57 @@ public class BasketballFeats implements Feats{
         }else{
             currentRequest += num;
         }
-        return currentRequest;
+        return this;
     }
 
-    public void pageOfResults(int pages){
+    public BasketballFeats pageOfResults(int pages){
         parameters.put(BasketballFeatsParameters.page,String.valueOf(pages));
+        return this;
     }
 
-    public void game_id(String gameId){
+    public BasketballFeats game_id(String gameId){
         parameters.put(BasketballFeatsParameters.game_id,gameId);
+        return this;
     }
 
-    public void player_id(String playerId){
+    public BasketballFeats player_id(String playerId){
         parameters.put(BasketballFeatsParameters.player_id,playerId);
+        return this;
     }
 
-    public void team_id(String team_id){
+    public BasketballFeats team_id(String team_id){
         parameters.put(BasketballFeatsParameters.team_id,team_id);
+        return this;
     }
 
-    public void interval_tyoe(BasketballIntervalTypes intervalType){
+    public BasketballFeats interval_tyoe(BasketballIntervalTypes intervalType){
         parameters.put(BasketballFeatsParameters.interval_type,intervalType.name());
+        return this;
     }
 
-    public void season_id(String seasonId){
+    public BasketballFeats season_id(String seasonId){
         parameters.put(BasketballFeatsParameters.season_id,seasonId);
+        return this;
     }
 
-    public void on(String date){
+    public BasketballFeats on(String date){
         parameters.put(BasketballFeatsParameters.on,date);
+        return this;
     }
 
-    public void since(String date){
+    public BasketballFeats since(String date){
         parameters.put(BasketballFeatsParameters.since,date);
+        return this;
     }
 
-    public void level(int level){
+    public BasketballFeats level(int level){
         parameters.put(BasketballFeatsParameters.level,String.valueOf(level));
+        return this;
     }
 
-    public void name(String name){
+    public BasketballFeats name(String name){
         parameters.put(BasketballFeatsParameters.name,name);
+        return this;
     }
 
     public String getCurrentRequest() {

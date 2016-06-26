@@ -5,6 +5,7 @@ import Feats.FeatsParameters.BaseballFeatsParameters;
 import Feats.FeatsParameters.FootballFeatsParameters;
 import IntervalTypes.BaseballIntervalTypes;
 import IntervalTypes.FootballIntervalTypes;
+import Leagues.League;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.net.MalformedURLException;
@@ -16,7 +17,7 @@ import java.util.Map;
 /**
  * Created by Mikolaj Wawrzyniak
  */
-public class FootballFeasts implements Feats {
+public class FootballFeasts implements Feats<FootballFeasts> {
     private final static String endpoint = "football/nfl/feats";
     private Map<FootballFeatsParameters, String> parameters;
     private String currentRequest;
@@ -30,11 +31,12 @@ public class FootballFeasts implements Feats {
         parameters.clear();
     }
 
-    public String build(){
-        return currentRequest = endpoint;
+    public FootballFeasts build(){
+        currentRequest = endpoint;
+        return this;
     }
 
-    public String perPage(int num){
+    public FootballFeasts perPage(int num){
         currentRequest = currentRequest + "&" + BaseballFeatsParameters.per_page.name() + "=";
         if(num > 40){
             currentRequest += 40;
@@ -43,47 +45,56 @@ public class FootballFeasts implements Feats {
         }else{
             currentRequest += num;
         }
-        return currentRequest;
+        return this;
     }
 
-    public void pageOfResults(int pages){
+    public FootballFeasts pageOfResults(int pages){
         parameters.put(FootballFeatsParameters.page,String.valueOf(pages));
+        return this;
     }
 
-    public void game_id(String gameId){
+    public FootballFeasts game_id(String gameId){
         parameters.put(FootballFeatsParameters.game_id,gameId);
+        return this;
     }
 
-    public void player_id(String playerId){
+    public FootballFeasts player_id(String playerId){
         parameters.put(FootballFeatsParameters.player_id,playerId);
+        return this;
     }
 
-    public void team_id(String team_id){
+    public FootballFeasts team_id(String team_id){
         parameters.put(FootballFeatsParameters.team_id,team_id);
+        return this;
     }
 
-    public void interval_tyoe(FootballIntervalTypes intervalType){
+    public void interval_type(FootballIntervalTypes intervalType){
         parameters.put(FootballFeatsParameters.interval_type,intervalType.name());
     }
 
-    public void season_id(String seasonId){
+    public FootballFeasts season_id(String seasonId){
         parameters.put(FootballFeatsParameters.season_id,seasonId);
+        return this;
     }
 
-    public void on(String date){
+    public FootballFeasts on(String date){
         parameters.put(FootballFeatsParameters.on,date);
+        return this;
     }
 
-    public void since(String date){
+    public FootballFeasts since(String date){
         parameters.put(FootballFeatsParameters.since,date);
+        return this;
     }
 
-    public void level(int level){
+    public FootballFeasts level(int level){
         parameters.put(FootballFeatsParameters.level,String.valueOf(level));
+        return this;
     }
 
-    public void name(String name){
+    public FootballFeasts name(String name){
         parameters.put(FootballFeatsParameters.name,name);
+        return this;
     }
 
     public String getCurrentRequest() {
