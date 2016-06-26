@@ -49,12 +49,10 @@ public class Connector {
                     con.getInputStream()
             ));
             String output;
-            System.out.println("Output from Server .... \n");
             while ((output = br.readLine()) != null) {
-                System.out.println(output);
+                con.disconnect();
+                return output;
             }
-            con.disconnect();
-            return output;
         }catch(MalformedURLException e){
             e.printStackTrace();
         } catch (IOException e) {
