@@ -1,5 +1,6 @@
 # Stattleship-Java-Bindings
 Work in progress... 
+Java bindings for the https://www.stattleship.com/ API. This is my personal project. I have nothing to do with Stattleship. I am not employed by Stattleship.
 TODO:
 
 1. [ ] implement parsers for the json objects
